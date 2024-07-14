@@ -9,17 +9,6 @@ import "izitoast/dist/css/iziToast.min.css";
 import ApiService from './api-service';
 import scrollMonitor from 'scrollmonitor';
 
-
-iziToast.show({
-  position: 'right-bottom',
-});
-
-//iziToast.info({
- // backgroundColor: 'rgba(0,0,0,0.3)',
-  //svgColor: 'rgb(60, 197, 218)',
-  //clickToClose: false,
-//});
-
 const formRef = document.getElementById('search-form');
 const imageContainerRef = document.querySelector('.gallery');
 
@@ -34,7 +23,6 @@ formRef.addEventListener('submit', submitForm);
 function submitForm(event) {
   event.preventDefault();
   imageContainerRef.innerHTML = '';
-  //iziToast.progress();
   search.searchQuery = formRef.elements.searchQuery.value;
   search.resetPage();
   addImageAndUpdateUI();
@@ -42,11 +30,9 @@ function submitForm(event) {
 
 function loadMore() {
   if (search.isMorePage()) {
-    //iziToast.progress();
     addImageAndUpdateUI();
     return;
   }
-  iziToast.info({message: "We're sorry, but you've reached the end of search results."});
 }
 
 async function addImageAndUpdateUI() {
@@ -55,7 +41,6 @@ async function addImageAndUpdateUI() {
     if (search.currentPage === 1 && search.totalHits !== 0) {
       iziToast.success({message:`Hooray! We found ${search.totalHits} images.`});
     }
-
     renderImage(image.hits);
   } catch {
     iziToast.error({message: 'Oops! Something went wrong! Try to reload the page!'});
@@ -67,7 +52,6 @@ function renderImage(array) {
     iziToast.error(
       'Sorry, there are no images matching your search query. Please try again.'
     );
-    iziToast.hide();
     return;
   }
   const markup = array
@@ -108,8 +92,5 @@ function renderImage(array) {
     .join('');
   imageContainerRef.insertAdjacentHTML('beforeend', markup);
   lightBox.refresh();
-
-  iziToast.hide();
-
   search.addPage();
 }

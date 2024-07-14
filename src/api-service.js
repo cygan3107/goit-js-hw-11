@@ -1,5 +1,5 @@
 import axios from 'axios';
-
+import { TEXT } from './text.js';
 const PER_PAGE = 40;
 const API_KEY = '44883181-49eb7880702be53042c4f854e';
 const BASE_URL = 'https://pixabay.com/api/';
