@@ -93,20 +93,23 @@ color: #808080;
   }
   
 .loader {
-  color: #FFF;
+  color: black;
   display: inline-block;
   position: relative;
-  font-size: 48px;
+  font-size: 20px;
   font-family: Arial, Helvetica, sans-serif;
   box-sizing: border-box;
+  justify-content: center;
+  align-items: center;
+  display: flex;
 }
 .loader::after {
   content: '';  
-  width: 5px;
-  height: 5px;
+  width: 2px;
+  height: 2px;
   background: currentColor;
-  position: absolute;
-  bottom: 10px;
+  position: relative;
+  bottom: -5px;
   right: -5px;
   box-sizing: border-box;
   animation: animloader 1s linear infinite;
@@ -117,9 +120,9 @@ color: #808080;
     box-shadow: 10px 0 rgba(255, 255, 255, 0), 20px 0 rgba(255, 255, 255, 0);
   }
   50% {
-    box-shadow: 10px 0 white, 20px 0 rgba(255, 255, 255, 0);
+    box-shadow: 10px 0 black, 20px 0 rgba(255, 255, 255, 0);
   }
   100% {
-    box-shadow: 10px 0 white, 20px 0 white;
+    box-shadow: 10px 0 black, 20px 0 black;
   }
 }

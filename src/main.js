@@ -11,15 +11,16 @@ import scrollMonitor from 'scrollmonitor';
 
 const formRef = document.getElementById('search-form');
 const imageContainerRef = document.querySelector('.gallery');
+const loaderRef = document.querySelector('.loader');
 
 const search = new ApiService();
 const lightBox = new SimpleLightbox('.gallery a');
 
 const scrollListener = scrollMonitor.create(imageContainerRef);
+loaderRef.remove('is-hidden');
 scrollListener.partiallyExitViewport(loadMore);
 
 formRef.addEventListener('submit', submitForm);
-
 function submitForm(event) {
   event.preventDefault();
   imageContainerRef.innerHTML = '';
@@ -30,9 +31,10 @@ function submitForm(event) {
 
 function loadMore() {
   if (search.isMorePage()) {
-    addImageAndUpdateUI();
+    loaderRef.add('is-hidden');
+       addImageAndUpdateUI();
     return;
-  }
+ }
 }
 
 async function addImageAndUpdateUI() {
@@ -49,8 +51,8 @@ async function addImageAndUpdateUI() {
 
 function renderImage(array) {
   if (!array.length) {
-    iziToast.error(
-      'Sorry, there are no images matching your search query. Please try again.'
+    iziToast.error({message:
+      'Sorry, there are no images matching your search query. Please try again.'}
     );
     return;
   }
