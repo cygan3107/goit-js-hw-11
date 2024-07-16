@@ -24,7 +24,7 @@ function submitForm(event) {
   event.preventDefault();
   imageContainerRef.innerHTML = '';
   search.searchQuery = formRef.elements.searchQuery.value;
-  search.resetPage();
+  formRef.reset()
   addImageAndUpdateUI();
 }
 
